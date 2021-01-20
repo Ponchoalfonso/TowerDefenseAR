@@ -8,7 +8,7 @@ public class DogKnightAI : MotionUnit
     EnemyAI target;
     Transform chase;
     float timer = 2;
-    float lifeSpan = 15;
+    float lifeSpan = 45;
     float attack = 0;
 
     protected new void Start()
@@ -82,6 +82,7 @@ public class DogKnightAI : MotionUnit
         {
             agent.isStopped = true;
             attacking = true;
+            other.GetComponent<EnemyAI>().ApplyEffect(new Effect(Effects.Slowness, 2, 2));
         }
     }
 

@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     public GameObject startUI;
     public GameObject lostUI;
 
+    public GameControls playerControls;
+
     void Awake()
     {
         Reset();
@@ -199,6 +201,8 @@ public class GameManager : MonoBehaviour
         // Reset timers
         timer = spawnRate;
         timeSurvived = 0f;
+        // Reset player units
+        playerControls.Reset();
         // Reset game state and UI
         gameState = GameState.welcome;
         pauseMenu.SetActive(false);
