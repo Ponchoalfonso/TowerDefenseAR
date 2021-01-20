@@ -8,7 +8,7 @@ public class DogKnightAI : MotionUnit
     EnemyAI target;
     Transform chase;
     float timer = 2;
-    float lifeSpan = 45;
+    float lifeSpan = 15;
     float attack = 0;
 
     protected new void Start()

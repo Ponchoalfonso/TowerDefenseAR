@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class UnitController: MonoBehaviour
 {
-    protected bool attacking = false;
+    protected bool attacking;
 
     private float currentHealth;
     private float currentDamagePoints;
     private float currentAttackSpeed;
     private float currentMovementSpeed;
-    private float extraHealth = 0;
+    private float extraHealth;
 
     private List<Effect> effects = new List<Effect>();
 
@@ -24,10 +24,7 @@ public class UnitController: MonoBehaviour
 
     protected void Start()
     {
-        currentHealth = unit.healthPoints;
-        currentDamagePoints = unit.damagePoints;
-        currentAttackSpeed = unit.attackSpeed;
-        currentMovementSpeed = unit.movementSpeed;
+        Reset();
     }
     
     protected void Update()
@@ -42,9 +39,11 @@ public class UnitController: MonoBehaviour
 
     public void Kill()
     {
-        Destroy(gameObject);
+         // Destroy(gameObject);
     }
 
+    public delegate void EventHandler(float health);
+    public event EventHandler OnDamage;
     public void Damage(float damage)
     {
         // Reduce extra health
@@ -58,6 +57,9 @@ public class UnitController: MonoBehaviour
         // Reduce real health if there is any residue
         if (residue > 0) return;
         currentHealth += residue;
+
+        if (OnDamage != null)
+            OnDamage(hp);
     }
 
     public void Heal(float health)
@@ -140,6 +142,16 @@ public class UnitController: MonoBehaviour
                 break;
         }
         effects.Remove(effect);
+    }
+
+    public void Reset()
+    {
+        currentHealth = unit.healthPoints;
+        currentDamagePoints = unit.damagePoints;
+        currentAttackSpeed = unit.attackSpeed;
+        currentMovementSpeed = unit.movementSpeed;
+        attacking = false;
+        extraHealth = 0;
     }
 
 }
