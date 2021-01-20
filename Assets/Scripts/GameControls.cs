@@ -21,6 +21,8 @@ public class GameControls : MonoBehaviour
     public Sprite normalUI;
     public Sprite highlightedUI;
 
+    public Transform unitHolder;
+
     void Start()
     {
         Reset();
@@ -92,7 +94,7 @@ public class GameControls : MonoBehaviour
             availableUnits[selectedUnit]--;
             countersUI[selectedUnit].SetText(availableUnits[selectedUnit].ToString());
             GameObject prefab = unitsPrefabs[selectedUnit];
-            Instantiate(prefab, point, prefab.transform.rotation);
+            Instantiate(prefab, point, prefab.transform.rotation, unitHolder);
         }
     }
 

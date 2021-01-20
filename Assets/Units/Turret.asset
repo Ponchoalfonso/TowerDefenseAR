@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Turret
   healthPoints: 1000
-  damagePoints: 4
+  damagePoints: 1
   movementSpeed: 0
   attackSpeed: 2.5

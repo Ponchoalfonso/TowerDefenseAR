@@ -119,8 +119,8 @@ public class GameManager : MonoBehaviour
 
     public void DisplayTime()
     {
-        int seconds = (int)Mathf.Floor(timeSurvived);
-        int minutes = seconds / 60;
+        int seconds = Mathf.FloorToInt(timeSurvived) % 60;
+        int minutes = Mathf.FloorToInt(timeSurvived) / 60;
         timerDisplay.SetText(string.Format("{0:00}:{1:00}", minutes, seconds));
     }
 
